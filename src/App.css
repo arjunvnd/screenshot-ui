@@ -1,8 +1,14 @@
-.input-container button{
+.input-container button {
   width: 100%;
   margin: 10px;
 }
-.input-container div{
+.input-container > div {
   width: 100%;
-  margin: 0.5em;
+  margin: 1em 0em;
+}
+.error {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  color: red;
 }

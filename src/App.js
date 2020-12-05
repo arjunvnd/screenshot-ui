@@ -3,7 +3,7 @@ import PrimaryButton from "./components/Buttons/PrimaryButton";
 import axios from "axios";
 import React, { useState } from "react";
 import FileSaver from "file-saver";
-import { Grid,  } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import RadioGroupFormat from "./components/Buttons/RadioGroupFormat";
 import ResolutionSelect from "./components/Buttons/ResolutionSelect";
 import InputFeild from "./components/Buttons/InputFeild";
@@ -48,8 +48,8 @@ function App() {
       const resolutionSettings = devices.find((item) => item.id === resolution);
       const uri =
         resolutionSettings.width && resolutionSettings.height
-          ? `http://localhost:3001/api/screenshot?weburi=${urlValue}&imagetype=${imageFormat}&width=${resolutionSettings.width}&height=${resolutionSettings.height}`
-          : `http://localhost:3001/api/screenshot?weburi=${urlValue}&imagetype=${imageFormat}`;
+          ? `/api/screenshot?weburi=${urlValue}&imagetype=${imageFormat}&width=${resolutionSettings.width}&height=${resolutionSettings.height}`
+          : `/api/screenshot?weburi=${urlValue}&imagetype=${imageFormat}`;
       const reponse = await axios.get(uri, {
         responseType: "arraybuffer",
       });
@@ -57,8 +57,11 @@ function App() {
       setResponseStatus({
         ...responseStatus,
         isLoading: false,
+        isError: false,
       });
+      setUrlValue("");
     } catch (error) {
+      console.log("Errpr", error);
       setResponseStatus({
         ...responseStatus,
         isError: true,
@@ -77,9 +80,9 @@ function App() {
 
   return (
     <>
-    <Header />
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid className="input-container" item xs={12} md={8} lg={8} xl={8}>
+      <Header />
+      <Grid container justify="center" alignItems="center">
+        <Grid className="input-container" item xs={8} md={6} lg={3} xl={2}>
           <InputFeild
             value={urlValue}
             title="Paste a URL"
@@ -96,12 +99,12 @@ function App() {
             menuItems={devices}
           />
           <PrimaryButton
-            title="Take a screenshot"
+            title={responseStatus.isLoading ? "Taking a screenshot..." : "Take a screenshot"}
             handleClick={handleScreenshotClick}
-            disabled={!urlValue}
+            disabled={!urlValue || responseStatus.isLoading}
           />
           {responseStatus.isError && (
-            <span>Error while taking the screenshot</span>
+            <span className="error">Error while taking the screenshot</span>
           )}
         </Grid>
       </Grid>

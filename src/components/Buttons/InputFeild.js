@@ -7,6 +7,7 @@ function InputFeild({ title, value, handleChange }) {
     <div>
       <TextField
         value={value}
+        fullWidth
         onChange={handleChange}
         label={title}
         //   variant="outlined"

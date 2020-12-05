@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core";
 function SuccessButton({ title, handleClick, ...props }) {
   return (
     <div>
-      <Button variant="contained" color="primary" {...props} onClick={handleClick} >
+      <Button style={{margin:0}} variant="contained" color="primary" {...props} onClick={handleClick} >
         {title}
       </Button>
     </div>

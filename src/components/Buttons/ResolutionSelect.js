@@ -7,7 +7,7 @@ function ResolutionSelect({ menuItems, value, handleChange, title }) {
     <div>
       <InputLabel>{title}</InputLabel>
 
-      <Select value={value} onChange={handleChange}>
+      <Select fullWidth value={value} onChange={handleChange}>
         {menuItems.map((menuItem) => {
           return (
             <MenuItem key={menuItem.id} value={menuItem.id}>

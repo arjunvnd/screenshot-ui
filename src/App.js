@@ -53,7 +53,7 @@ function App() {
       const reponse = await axios.get(uri, {
         responseType: "arraybuffer",
       });
-      FileSaver.saveAs(new Blob([reponse.data]), `test.${imageFormat}`);
+      FileSaver.saveAs(new Blob([reponse.data]), `download.${imageFormat}`);
       setResponseStatus({
         ...responseStatus,
         isLoading: false,

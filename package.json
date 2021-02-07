@@ -24,14 +24,17 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "lint-staged":{
+    "src/**/*.js":["eslint --fix","git add"]
+  },
   "husky": {
-  "hooks": {
-    "applypatch-msg": "echo \"[Husky] applypatch-msg\"",
-    "pre-applypatch": "echo \"[Husky] pre-applypatch\"",
-    "post-applypatch": "echo \"[Husky] post-applypatch\"",
-    "pre-commit": "echo \"[Husky] pre-commit\""
-  }
-},
+    "hooks": {
+      "applypatch-msg": "echo \"[Husky] applypatch-msg\"",
+      "pre-applypatch": "echo \"[Husky] pre-applypatch\"",
+      "post-applypatch": "echo \"[Husky] post-applypatch\"",
+      "pre-commit": "lint-staged"
+    }
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
